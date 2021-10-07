@@ -1,0 +1,60 @@
+option solution_round 3;
+
+model VPP_Case_7.mod;
+data  VPP_Case_7.dat;
+#   model VPP_Case_7.run;
+
+table factory IN "tableproxy" 'ODBC' "VPP_CASE7.xls":
+	#periods <- [periods], 
+  [periods,Factory],CHP_trade_F,Price_DA_F;#,D_E_F,D_T_F;
+read table factory;
+
+table factory1 IN "tableproxy" "ODBC" "VPP_CF.xls":
+	#periods <- [periods], 
+  [periods,Factory,Gens],CF_F;
+read table factory1;
+
+
+table warehouse IN "tableproxy" "ODBC" "VPP_CASE7.xls":
+  [periods,Warehouse],Price_DA_W,CHP_trade_W;
+read table warehouse;
+
+table warehouse1 IN "tableproxy" "ODBC" "VPP_CF.xls":
+  [periods,Warehouse,Gens],CF_W;
+read table warehouse1;
+
+table store IN "tableproxy" "ODBC" "VPP_CASE7.xls":
+  [periods,Store],Price_DA_S,CHP_trade_S;
+read table store;
+
+table store1 IN "tableproxy" "ODBC" "VPP_CF.xls":
+  [periods,Store,Gens],CF_S;
+read table store1;
+
+
+
+option solver gurobi;
+#option Gurobi_options 'basis=0';
+solve;
+display 
+         {g in Gens,f in Factory} G_F[g,f],
+         {g in Gens,f in Warehouse} G_W[g,f],
+         {g in Gens,s in Store} G_S[g,s],
+         {f in Factory}ESS_F[f],
+		 {w in Warehouse}ESS_W[w],
+		 {s in Store}ESS_S[s];
+#	display{t in 1..T,f in Factory}ESS_E_F[t,f];
+#   display {t in 1..T,f in Factory}ESS_T_F[t,f];
+#   display {t in 1..T,f in Warehouse}ESS_T_W[t,f];
+#	display {t in 1..T,f in Factory}CHP_T_F[t,f];
+#   display   {t in 1..T,f in Factory}CHP_E_F[t,f];
+#     display {t in 1..T,f in Warehouse}CHP_E_W[t,f];
+
+
+
+
+
+
+
+
+#http://www.amplstudio.com/tutorials/connecting_to_a_database.htm

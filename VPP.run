@@ -1,0 +1,11 @@
+reset;
+model VPP.mod;
+data VPP.dat;
+option solver cplex;
+
+	   
+solve;
+ display pmda, pechp, pes_ch, pes_dis,  se, ths_ch, ths_dis, sth; 
+ display _nvars;
+display _ncons;
+display _total_solve_time;

@@ -1,0 +1,76 @@
+data;
+
+param T:=8736;
+param Y:=20;                              # 20 years investment  
+param r:=0.3;                              # interest rate
+
+param CHP_eff:=0.35;       #Electrical efficiency of CHP in the facilities (typically 30-40%).
+param gas_price:=7;        #Natural gas price (unit: $/MWh).
+param CHP_EtoT_F:=2;     #Thermal to electric power ratio of CHP in the facilities (typical range is 2 to 10).
+param CHP_EtoT_W:=2;     #Thermal to electric power ratio of CHP in the facilities (typical range is 2 to 10).
+param CHP_EtoT_S:=2;     #Thermal to electric power ratio of CHP in the facilities (typical range is 2 to 10).
+
+param a1_G:= WT 1.5E+6             #capacity cost OF renewable generators
+             PV 2E+6;
+                           
+param a1_ESS:= 0.3E+6;              #capacity cost OF renewable generators
+
+param a2_G:= WT 8                   # O/M cost OF renewable generators
+             PV 4;
+             
+param a2_ESS:= 0.0075E+6;            # O/M cost OF ENERGY STORAGE
+
+
+param a3_G:= WT 0             # carbon credit of each location and each 
+             PV 10;
+
+
+param ESS_E_F_min:=SanF 0;        #Minmum capacity limit of ES  in factory (Unit: MW).
+param ESS_E_W_min= LasV 0;      #Minmum capacity limit of ES  in Warehouse (Unit: MW).
+param ESS_E_S_min:= Pho 0;          #Minmum Tcapacity limit of ES  in Store (Unit: MW).
+
+
+param ESS_E_F_max:= SanF 20;        #Minmum capacity limit of ES  in factory (Unit: MW).
+param ESS_E_W_max= LasV 30;      #Minmum capacity limit of ES  in Warehouse (Unit: MW).
+param ESS_E_S_max:= Pho 15;          #Minmum Tcapacity limit of ES  in Store (Unit: MW).
+
+param ESS_T_F_max:= SanF 30;  #30       #Maximum capacity of thermal storage in factory 
+param ESS_T_F_min= SanF 0;         #Minmum capacity of thermal storage in factory
+
+param ESS_T_W_max:=LasV 30;       #Maximum capacity of thermal storage in Warehouse (Unit: MW).
+param ESS_T_W_min:=LasV 0;       #Minmum capacity of thermal storage  in Warehouse (Unit: MW).
+
+param ESS_T_S_max:=Pho 30;  #30           #Maximum capacity of thermal storage  in Store (Unit: MW).
+param ESS_T_S_min:=Pho 0;           #Minmum capacity of thermal storage in Store (Unit: MW).
+######
+param CHP_E_F_max:=SanF 15;        #Maximum electric power of CHP in factory (Unit: MW).
+param CHP_E_F_min:=SanF 0;        #Minmum electric power of CHP in factory (Unit: MW).
+
+param CHP_E_W_max:=LasV 15;      #Maximum electric power of CHP in Warehouse (Unit: MW).
+param CHP_E_W_min:=LasV 0;      #Minmum electric power of CHP in Warehouse (Unit: MW).
+
+param CHP_E_S_max:= Pho 10;         #Maximum electric power of CHP in Store (Unit: MW).
+param CHP_E_S_min:= Pho 0;         #Minmum electric power of CHP in Store (Unit: MW).
+#####
+param CHP_T_F_max:=SanF 5; #       #Maximum THERMAL power of CHP in factory (Unit: MW).
+param CHP_T_F_min:=SanF 0;       #Minmum THERMAL power of CHP in factory (Unit: MW).
+
+param CHP_T_W_max:= LasV 20;  #   #Maximum THERMAL power of CHP in Warehouse (Unit: MW).
+param CHP_T_W_min:= LasV 0;    #Minmum THERMAL power of CHP in Warehouse (Unit: MW).
+
+param CHP_T_S_max:=Pho 10;   #      #Maximum THERMAL of CHP in Store (Unit: MW).
+param CHP_T_S_min:=Pho 0;          #Minmum THERMALof CHP in Store (Unit: MW).
+
+#param Price_DA_F:=SanF 70;
+#param Price_DA_W:= LasV 70;
+#param Price_DA_S:=Pho  70;
+
+param D_E_F:= SanF 5;
+param D_E_W:=LasV 3;
+param D_E_S:= Pho 2;
+
+
+param D_T_F:=SanF 3;
+param D_T_W:= LasV 5;
+param D_T_S:= Pho 2;
+
